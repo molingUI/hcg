@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>three.js css3d - sprites</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			ul,li{
+				list-style: none;
+			}
+			li{
+				display: flex;
+				margin: 10px;
+			}
+			.content{
+				height: 300px;
+				width: 400px;
+				border:1px solid #8da2c8;
+				border-radius: 4px;
+			}
+			html,body{
+				height: 100%;
+				width: 100%;
+				line-height: 24px;
+				overflow: hidden;
+			}
+			body{
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+			.title{
+				text-align: center;
+			}
+			.result div{
+				margin-left: 52px
+			}
+			.result span{
+				margin-left: 8px;
+			}
+			.calculation{
+				display: flex;
+				justify-content: center;
+			}
+			.calculation button{
+				line-height: 32px;
+				padding: 0 20px;
+				background: #1f5aff;
+				color: #fff;
+				border: none;
+				border-radius: 4px;
+				cursor: pointer;
+			}
+			input{
+				margin-left: 8px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="content">
+			<h3 class="title">HCG计算器</h3>
+			<ul>
+					<li>
+						<div>上次数值:</div>
+						<input id="lastValue"/>
+					</li>
+					<li>
+						<div>上次时间:</div>
+						<input id="lastTime"/>
+					</li>
+					<li>
+						<div>目前时间:</div>
+						<input id="nowTime"/>
+					</li>
+				</ul>
+				<div class="calculation">
+					<button onclick="calculation()">计算</button>
+				</div>
+				<div class="result">
+					<div>下限:<span id="upLimit"></span></div>
+					<div>上限:<span id="downLimit"></span></div>
+				</div>
+		</div>
+	</body>
+	<script>
+		function calculation(){
+			const	lastValue = document.getElementById('lastValue')
+			const	lastTime = document.getElementById('lastTime')
+			const	nowTime = document.getElementById('nowTime')
+			const	downLimit = document.getElementById('downLimit')
+			const	upLimit = document.getElementById('upLimit')
+			let downValue =  lastValue.value*Math.pow(Math.pow(2, 1/1.7), nowTime.value-lastTime.value) 
+			let upValue =  lastValue.value*Math.pow(Math.pow(2, 1/2.5), nowTime.value-lastTime.value)
+			downLimit.innerText=downValue.toFixed(2)
+			upLimit.innerText=upValue.toFixed(2)
+		}
+	</script>
+</html>
